@@ -1,0 +1,8 @@
+file_paths:
+  json_directory: "../data/raw/json"
+  tour_ids_csv: "../data/raw/tour-ids.csv"
+  processed_tour_ids_csv: "../data/processed_tour_ids.csv"
+  error_tour_ids_csv: "../data/error_tour_ids.csv"  
+
+processing:
+  batch_size: 10

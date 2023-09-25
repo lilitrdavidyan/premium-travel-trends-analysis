@@ -140,7 +140,7 @@ class TourDataProcessor:
                 connection.rollback()
                 self.logger.error(f"Transaction failed: {e}. {self.transformed_data['id']}")
                 traceback.print_exc()
-            
+                raise
             finally:
                 connection.autocommit = True
                 if cursor:
@@ -215,22 +215,22 @@ class TourDataProcessor:
                     "slug": option_data.get("slug"),
                     "maxPax": option_data.get("maxPax"),
                     
-                    "name": option_data.get('defaultSeason', {}).get('name', ''),
-                    "description": option_data.get('defaultSeason', {}).get('copy', {}).get('description', ''),
+                    "name": option_data.get('defaultSeason', {}).get('name'),
+                    "description": option_data.get('defaultSeason', {}).get('copy', {}).get('description'),
 
                     # Convert the list of dictionaries to a single text string
                     'travelInclusions' : str.join("\n\n",[f"{entry['title']}\n{entry['body']}" for entry in option_data.get('defaultSeason', {}).get('copy', {}).get('travelInclusions')]),
                     'diningInclusions' : str.join("\n\n",[f"{entry['title']}\n{entry['body']}" for entry in option_data.get('defaultSeason', {}).get('copy', {}).get('diningInclusions')]),
 
-                    "startLocationName": option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('name', ''),
-                    "startLocationCountryCode":  option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('countryCode', ''),
-                    "startLocationLongitude": option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('longitude', ''),
-                    "startLocationLatitude": option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('latitude', ''),
+                    "startLocationName": option_data.get('defaultSeason', {}).get('startLocation', {}),
+                    "startLocationCountryCode":  option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('countryCode'),
+                    "startLocationLongitude": option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('longitude'),
+                    "startLocationLatitude": option_data.get('defaultSeason', {}).get('startLocationDetails', {}).get('latitude'),
 
-                    "endLocationName": option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('name', ''),
-                    "endLocationCountryCode":  option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('countryCode', ''),
-                    "endLocationLongitude": option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('longitude', ''),
-                    "endLocationLatitude": option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('latitude', ''),
+                    "endLocationName": option_data.get('defaultSeason', {}).get('endLocation', {}),
+                    "endLocationCountryCode":  option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('countryCode'),
+                    "endLocationLongitude": option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('longitude'),
+                    "endLocationLatitude": option_data.get('defaultSeason', {}).get('endLocationDetails', {}).get('latitude'),
                     
                     "countries_visited": ", ".join (option_data.get('defaultSeason', {}).get('countriesVisited', [])),
                     "minChildPriceAge": option_data.get('defaultSeason', {}).get('minChildPriceAge'),
@@ -279,8 +279,8 @@ class TourDataProcessor:
             for location in location_list:
                 transformed_location = {
                     "tour_id": tour_id,
-                    "name": location.get('name', ''),
-                    "countryCode": location.get('countryCode', ''),
+                    "name": location.get('name'),
+                    "countryCode": location.get('countryCode'),
                     "longitude": location.get('longitude', 0),
                     "latitude": location.get('latitude', 0)
                 }
