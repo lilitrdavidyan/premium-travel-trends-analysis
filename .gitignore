@@ -1,6 +1,7 @@
 .env
 *.json
+*.npy
+*.csv
+*.pkl
 .DS_Store
-data/error_tour_ids.csv
-data/processed_tour_ids.csv
 
