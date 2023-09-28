@@ -16,11 +16,9 @@ class GeographicalSegmentation:
         # Rename the "Decc" column to "Dec"
         self.data.rename(columns={'Decc': 'Dec'}, inplace=True)
 
-        # perform any other initialization steps
-        pass
 
     def show(self):
-        st.write("Interactive Map")
+        st.title("Interactive Map")
         
         list_of_countries= ['AL', 'AM', 'AR', 'AT', 'AU', 'BA', 'BE', 'BG', 'BR', 'BW', 'CA', 'CH', 'CL', 'CN', 'CR', 'CZ', 'DE', 'DK', 'EC', 'EG', 'EE', 'ES', 'FI', 'FR', 'GB', 'GE', 'GI', 'GR', 'HR', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JO', 'JP', 'KE', 'KH', 'KR', 'LA', 'LI', 'LK', 'LS', 'LT', 'LU', 'LV', 'MA', 'MC', 'MG', 'MK', 'MT', 'MV', 'MY', 'NE', 'NL', 'NO', 'NP', 'NZ', 'PE', 'PL', 'PT', 'RO', 'RS', 'RW', 'SE', 'SG', 'SI', 'SK', 'TH', 'TR', 'TW', 'TZ', 'UG', 'US', 'UY', 'VA', 'VN', 'ZA', 'ZM', 'ZW']
         list_of_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']

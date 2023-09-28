@@ -19,12 +19,14 @@ st.set_page_config(layout='wide')
 analysis_facade = AnalysisFacade()
 
 # Sidebar with radio buttons as menu items
-option = st.sidebar.radio('Choose a section:', ('Recommenders', 'Interactive Map', 'Heat Map'))
+option = st.sidebar.radio('Choose a section:', ('Recommenders', 'Interactive Map', 'Heat Map', 'Statistical Analysis'))
 
 if option == 'Interactive Map':
     analysis_facade.show_geographical_segmentation()
 elif option == 'Heat Map':
     analysis_facade.show_heat_map()
+elif option == 'Statistical Analysis':
+    analysis_facade.show_statistical_analysis()
 
 elif option == 'Recommenders':
     st.image(webp_image, use_column_width=True)

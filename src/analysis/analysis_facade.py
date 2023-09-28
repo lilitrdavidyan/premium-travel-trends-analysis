@@ -1,6 +1,7 @@
 # analysis_facade.py
 from .geographical_segmentation import GeographicalSegmentation
 from .price_heat_map import PriceHeatMap
+from .statistical_analysis import StatisticalAnalysis
 # from .tour_analysis import TourAnalysis
 # from .pricing_analysis import PricingAnalysis
 #... import other analysis classes
@@ -17,6 +18,7 @@ class AnalysisFacade:
 
         self.geographical_segmentation = GeographicalSegmentation()
         self.price_heat_map = PriceHeatMap()
+        self.statistical_analysis = StatisticalAnalysis()
         # self.tour_analysis = TourAnalysis(data_paths['tour_analysis'])
         # self.pricing_analysis = PricingAnalysis(data_paths['pricing_analysis'])
 
@@ -28,6 +30,8 @@ class AnalysisFacade:
     def show_heat_map(self):
         self.price_heat_map.show()
 
+    def show_statistical_analysis(self):
+        self.statistical_analysis.show()
     # def show_tour_analysis(self):
     #     self.tour_analysis.show()
 
