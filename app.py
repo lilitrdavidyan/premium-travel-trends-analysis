@@ -4,6 +4,9 @@ from src.recommenders.recommender import Recommender
 from src.recommenders.recommender_by_proximity import ProximityRecommender
 from src.recommenders.recommender_by_cosine_similarity import CosineSimilarityRecommender
 from src.recommenders.recommender_KMeans import KMeansRecommender
+from src.analysis.geographical_segmentation import GeographicalSegmentation
+from src.analysis.analysis_facade import AnalysisFacade
+
 import pandas as pd
 
 
@@ -13,20 +16,17 @@ webp_image = Image.open(image_path)
 
 st.set_page_config(layout='wide')
 
-
-def recommend_tours(user_input):
-    # Replace this with actual recommendation logic
-    return ["Tour A", "Tour B", "Tour C"]
+analysis_facade = AnalysisFacade()
 
 # Sidebar with radio buttons as menu items
-option = st.sidebar.radio('Choose a section:', ('Show Recommenders', 'Show EDA Findings'))
+option = st.sidebar.radio('Choose a section:', ('Recommenders', 'Interactive Map', 'Heat Map'))
 
-if option == 'Show EDA Findings':
-    st.title('EDA Findings')
-    # You can add code here to display EDA findings
-    st.write('Here are the EDA findings...')
+if option == 'Interactive Map':
+    analysis_facade.show_geographical_segmentation()
+elif option == 'Heat Map':
+    analysis_facade.show_heat_map()
 
-if option == 'Show Recommenders':
+elif option == 'Recommenders':
     st.image(webp_image, use_column_width=True)
     st.title('Similar Tour Recommender')
 
@@ -66,11 +66,11 @@ if option == 'Show Recommenders':
     if user_input:  
         try:
             user_input = int(user_input)  
-            if user_input < 1 or user_input > 773:  
-                st.warning("Please enter a number between 1 and 773")
+            if user_input < 0 or user_input > 772:  
+                st.warning("Please enter a number between 0 and 772")
                 user_input = None  # Reset user_input
         except ValueError:  # This will be executed if user_input cannot be converted to an integer
-            st.warning("Please enter a valid number between 1 and 773")
+            st.warning("Please enter a valid number between 0 and 772")
             user_input = None  # Reset user_input
 
     # Button to Get Recommendations

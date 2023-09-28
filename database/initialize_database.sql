@@ -115,5 +115,9 @@ CREATE TABLE IF NOT EXISTS departures (
 	FOREIGN KEY (fkTourOptionId) REFERENCES tour_options (id)
 );
 
+CREATE INDEX idx_tour_options_tour_id ON tour_options (tour_id);
+CREATE INDEX idx_locations_visited_tour_id ON locations_visited (tour_id);
+CREATE INDEX idx_options_tour_id ON options (tour_id);
+CREATE INDEX idx_departures_fkTourOptionId ON departures (fkTourOptionId);
 
 

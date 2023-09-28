@@ -16,5 +16,5 @@ class Recommender:
     
     def _pick_top_neighbours(self, tour_id, neighbor_indices, num_recommendations, original_data ):
         tour = original_data.iloc[tour_id]
-        nearest_rows = original_data.iloc[neighbor_indices].loc[original_data['tour_id'] != tour_id]
+        nearest_rows = original_data.iloc[neighbor_indices].loc[original_data['tour_id'] != tour['tour_id']].drop_duplicates(subset='tour_id', keep='first')
         return pd.concat([tour.to_frame().T, nearest_rows]).head(num_recommendations + 1)
